@@ -230,9 +230,9 @@ uni-app			HBuder发布的框架
 
 2016年：我能做Hybrid混合开发。
 
-2017年：我vue[react]会。
+2017年：我vue或react会。
 
-2018年：我vue[react]会，原生JS设计模式、常用原理掌握的很清楚。
+2018年：我vue或react会，原生JS设计模式、常用原理掌握的很清楚。
 
 2019年~...：掌握底层原理，掌握项目实战，掌握框架、组件的封装。
 
@@ -242,15 +242,52 @@ uni-app			HBuder发布的框架
 
 ------
 
+### 推荐学习方法
 
+1. 笔记+复习
+2. 深挖底层原理
+3. 学而思
+4. 实战：薪资和你敲过的代码成正比
+5. 多读书：与技术无关
 
+# 前端IDE
 
+ ***Integrated Development Environment  集成开发环境***
 
+- sublime text 
+- Hbuilderx
+- webstorm
+- Visual Studio Code
 
+### 推荐IDE-VScode
 
+​		***微软唯一的良心产品***
 
+#### 安装
 
+官网：https://code.visualstudio.com
 
+***一路下一步，遇框全选***。
+
+特点：
+
+```
+永久免费
+支持30多种编程语言
+强大的代码提示和其它功能（debug/git等）
+丰富的插件库   
+轻量级    
+```
+
+#### 推荐添加插件
+
+```
+1. Chinese										 汉化插件（英文原版对英语提高有帮助）
+2. open in borwser								 关联浏览器插件
+3. Beautify（shift + alt + f）					代码格式化插件
+4. Live Server									 实时显示效果插件
+......
+```
 
 
 
