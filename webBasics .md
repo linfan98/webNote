@@ -282,10 +282,10 @@ uni-app			HBuder发布的框架
 #### 推荐添加插件
 
 ```
-1. Chinese										 汉化插件（英文原版对英语提高有帮助）
-2. open in borwser								 关联浏览器插件
-3. Beautify（shift + alt + f）					代码格式化插件
-4. Live Server									 实时显示效果插件
+1. Chinese	汉化插件（英文原版对英语提高有帮助）
+2. open in borwser	关联浏览器插件
+3. Beautify（shift + alt + f）	代码格式化插件
+4. Live Server	实时显示效果插件
 ......
 ```
 
