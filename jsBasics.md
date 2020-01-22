@@ -1,5 +1,5 @@
 # JS
-
+ 
 ## JS基本知识
 ### 推荐书籍
 1. JavaScript高级程序设计（第三版）
@@ -300,23 +300,47 @@ NaN和任何值（包括自己）都不相等：NaN!=NaN，所以我们不能用
   console.log(Boolean([])); //=> ture
   console.log(Boolean([12])); //=> ture
   console.log(Boolean(-1)); //=> ture
+
+  // 1个叹号——取反操作 => 先转为布尔类型，再取反
+  // 2个叹号——转换为布尔 == boolean => 逼格较高
+  console.log(!1); //=>false
+  console.log(!!1); //=>true
+
+  // 条件判断
+  if (1) {
+    /*
+      如果条件只是一个值，先转换为布尔值
+    */
+    console.log("哈哈"); //=> 哈哈
+  }
+  if ('3px' + 3) {
+    // => '3px3' => true
+    console.log("哈哈"); //=> 哈哈
+  }
+  if ('3px' - 3) {
+    // => '3px' => NaN, NaN - 3 = NaN => flase
+    console.log("哈哈"); //=> 不输出
+  }
+  
 ```
 
 ### null / undefined
 
 > null和undefined都代表的是没有
 
-- null：意料之中（一般都是开始不知道值，我们手动先设置为null，后期再给予赋值操作）
+- null：意料之中（**一般都是开始不知道值，我们手动先设置为null，后期再给予赋值操作**）
 
-```
-let num = null; //=>let num = 0;  一般最好用null作为初始的空值，因为零不是空值，他在栈内存中有自己的存储空间（占了位置）
+```javascript
+let num = null; //=>let num = 0;  
+// 一般最好用null作为初始的空值，因为零不是空值，他在栈内存中有自己的存储空间（占了位置）
+// 0会消耗一点点点点点点性能，null不消耗性能
 ...
 num = 12;
 ```
 
-- undefined：意料之外（不是我能决定的）
+- undefined：意料之外（**不是我能决定的**）
 
-```
+```javascript
 let num; //=>创建一个变量没有赋值，默认值是undefined
 ...
 num = 12;
@@ -326,4 +350,53 @@ num = 12;
 
 > {[key]:[value],...} 任何一个对象都是由零到多组键值对（属性名：属性值）组成的（并且属性名不能重复）
 
-> 数组是特殊的对象数据类型
+```javascript
+// 属性名都是字符串或者数字格式的
+ let person = {
+   name: '易烊千玺',
+   // 'name': '易烊千玺'
+   age: 40,
+   height: '185cm',
+   weight: '80kg',
+   1:100 // 假设第一科成绩为100分
+ };
+
+//  设置&修改属性名，属性值
+ person.gf = 'pander';
+ person.name = '李易峰',
+ person.gf['gf']; //=> pander
+ person.name; //=> 李易峰
+
+//  获取属性名对应的属性值
+ person.name; //=> 易烊千玺
+ person['age']; //=> 40
+//  当前属性值不存在，输出undefined
+ person.sex; //=> undefined
+ person[1]; //=> 100
+//  如果属性名是数字，则不能使用“.”的方式调用属性值
+ person.1; //=> SyntaxError,语法错误
+
+// 删除属性名，属性值
+  // 真删除 => 把属性彻底删除
+delete person[1]; //=> 1彻底消失
+  // 假删除 => 属性值删除，属性还在
+ person.weight = null; //=> null
+ person.weight = undefined; //=> undefined，不推荐
+
+```
+> ### 数组是特殊的对象数据类型
+```javascript
+/*
+ * 数组是特殊的对象数据类型
+ *   1. 我们中括号中设置的是属性值，属性名默认为0~n，每一个数字代表每一项的位置，这个数字叫做“索引” => 从0开始，连续递增，代表每一项位置的数字属性名
+ *   2. 默认属性length，存储数组的长度
+ */
+  let  ary = [12,'哈哈',true,13];
+  console.log(ary); //=> (4)[12,'哈哈',true,13]
+  ary.length; //=> 4
+  ary['lenght']; //=> 4
+  ary[1]; //=> 哈哈
+  ary[ary.lenght-1]; //=> 获取数组最后一项，13
+  ary[ary.lenght]; //=> 内容溢出，报错
+  ary[ary.lenght] = 100; //=> 向数组末尾增加内容
+```
