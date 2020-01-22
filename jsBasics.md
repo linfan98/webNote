@@ -1,21 +1,28 @@
 # JS
- 
+
 ## JS基本知识
+
 ### 推荐书籍
+
 1. JavaScript高级程序设计（第三版）
 2. ES6标准入门（电子书网址：[ECMAScript6入门](http://www.es6.ruanyifeng.com)）
 3. 你不知道的JavaScript(上中下)
 4. JavaScript权威指南（俗称犀牛书，不推荐学习看）
+
 ### js效果
+
 + **人机交互**
 + **动画效果**
 + **数据绑定**
 + **写后台**
 + **...**
+
 ### JS做客户端语言
+
 > 按照相关的JS语法，去操作页面中的元素，有时还要操作浏览器里面的一些功能
 
 - ECMAScript3/5/6...：JS的语法规范（变量、数据类型、操作语句等等）
+
 - DOM（document object model）：文档对象模型，提供一些JS的属性和方法，用来操作页面中的DOM元素
 - BOM（browser object model）：浏览器对象模型，提供一些JS的属性和方法，用来操作浏览器的
 
@@ -24,7 +31,9 @@
 ## js变量
 
 ### JS中的变量 variable
+
 多种定义方式：***var / let / const / function / import / class***    
+
 ***严谨的命名规范：区分大小写 / 驼峰命名 / 关键字保留字***  
 > 变量：可变的量，在编程语言中，变量其实就是一个名字，用来存储和代表不同值的东西
 
@@ -122,6 +131,7 @@ var var = 10; //=>肯定不行的
     - {} 普通对象
     - [] 数组对象
     - /^[+-]?(\d|([1-9]\d+))(\.\d+)?$/ 正则对象
+      
       > 检验是否是有效数字：/^[+-]?(\d|([1-9]\d+))(\.\d+)?$/
     - Math数学函数对象
     - 日期对象
@@ -400,3 +410,401 @@ delete person[1]; //=> 1彻底消失
   ary[ary.lenght]; //=> 内容溢出，报错
   ary[ary.lenght] = 100; //=> 向数组末尾增加内容
 ```
+
+## 面试题
+```javascript
+let a = 12;
+let b = a;
+b = 13;
+console.log(a);
+
+let n = {name:'林凡'};
+let m = n;
+m.name = 'code';
+console.log(n.name);
+
+```
+
+## 数据类型之间的区别
+
+> ## __JS的底层学习,没有一张图解决不了的__
+
+### 浏览器执行JS代码
+> 从电脑内存中分配出一块内存，用来执行代码（栈内存：Stack）
+
+> 浏览器分配一个主线程，用来自上而下执行JS代码
+
+### 栈内存
+> 变量存储空间
+
+> 值存储空间
+
+> 代码执行空间：主线程
+
+```javascript
+let a = 2;
+// 1.创建变量a，放到当前栈内存变量存储区域中
+// 2.创建一个值12，把它存储到栈内存的值区域中（简单的基本类型值，复杂的引用类型不是）
+// 3.等号为赋值，其实赋值是让变量和值相互关联的过程
+
+let b = a;
+// 和上面大致相同，步骤2省略
+
+b = 13;
+// 创建一个值13
+// 让变量b与值13产生关联
+
+console.log(a); //=> 12
+```
+#### 简单值赋值过程
+> 创建变量a，放到当前栈内存变量存储区域中
+
+> 创建一个值12，把它存储到栈内存的值区域中（简单的基本类型值，复杂的引用类型不是）
+
+> 等号为赋值，其实赋值是让变量和值相互关联的过程
+
+### 堆内存
+
+
+#### 复杂值（变量和值不是一一对应的）
+
+> 在内存中新分配出一块内存，用来存储引用类型的值（堆内存：heap ） 内存有16机制地址
+
+> 把对象中的属性名：属性值（键值对）依次存储到对内存中
+
+> 把堆内存地址和变量关联起来
+
+```javascript
+let n = {name:'林凡'};
+// 1.分配堆内存
+// 2.存储对象中的键值对
+// 3.在栈内存中创建变量
+// 4.在栈内存中创建堆内存的地址
+// 5.将对象变量与堆地址关联
+
+let m = n;
+// 1.在栈内存中创建变量
+// 2.寻找栈内存的值
+// 关联与n相对应的堆地址
+
+m.name = 'code';
+// 修改堆内存中的值，但指向的堆地址不变
+
+console.log(n.name); //=> code
+```
+
+#### 基本数据类型与引用数据类型区别
+
+| 基本数据类型 | 引用数据类型 |
+| ---- | ---- |
+|按值操作|操作堆内存的地址|
+|值类型|引用类型|
+
+```javascript
+let n = [10,20];
+// 开辟堆内存，地址为AAAFFF000
+// 在栈内存创建变量n
+// 在栈内存创建堆地址
+// 关联堆地址
+// 在堆内存创建值（多个）
+
+let m = n;
+// 创建变量m
+// 关联堆地址AAAFFF000
+
+let x = m;
+// 创建变量x
+// 关联堆地址AAAFFF000
+
+m[0] = 100;
+// 修改堆内存AAAFFF000里面的x
+
+x = [30,40];
+// x已经指定堆内存，只能修改
+// 创建新堆内存地址bbbfff000
+// x重新关联新堆地址bbbfff000
+// 新堆内存创建值
+
+x[0] = 200;
+// 修改堆地址bbbfff000的值
+
+m = x;
+// m指向堆地址bbbfff000
+
+m[1] = 300;
+// 修改堆地址bbbfff000的值
+
+n[2] = 400;
+// 在堆地址aaafff000添加新的键值对
+
+consloe.olg(n,m,x);
+// n => [100,20,400]
+// m,x => [200,300]
+```
+## 名企面试题
+
+```javascript
+let a = {
+  n: 1
+};
+// 在栈内存创建变量a
+// 创建堆内存，地址为aaFF00，值为 n:1
+// 堆内存创建键值对 n:1
+// 在栈内存中关联变量a和堆地址aaFF00
+let b = a;
+// 在栈内存创建变量b
+// 在栈内存中关联变量b与堆地址aaFF00
+a.x = a = {
+  n: 2
+} ;
+// 重新创建堆地址bbff00,值为 n:2
+// a.x => 在堆地址aaff00创建新的键值对 x:bbff00
+// a与bbff00关联
+
+/* 
+  此时 
+  a = {n:2},
+  b = {
+    n:1,
+    x:{
+      n:2
+    }
+}
+*/
+console.log(a.x); //=> undefined
+consloe.log(b); //=> b = { n:1, x:{ n:2 }}
+```
+```javascript
+let a = {n:1};
+let b = a;
+a.x = b;
+// 会造成内存无限溢
+```
+
+## JS的数据类型检测
+
+> typeof [val] => 用来检测数据类型的运算符
+
+> instanceof => 用来检测当前实例是否隶属于某个类
+
+> constructor => 基于构造函数检测数据类型(样式基于类的方式)
+
+> Object.prototype.toString.call() => 检测数据类型最好的办法
+
+```javascript
+// 基于typeof检测出来的是字符串,字符串中包含对应的类型
+// 局限性:
+  // typeof null => Object,但null不是对象
+  // 基于typeof无法细分出当前值是普通对象还是数组对象,因为只要是对象类型,返回结果都是"Object"
+  console.log(typeof 1); //=> number
+  let a = NaN;
+  console.log(typeof a); //=> number
+  console.log(typeof function () {}); //=> function
+
+  console.log(typeof typeof typeof []); //=>从右向左计算
+// typeof [] => 'object'
+// typeof 'object' => 'string'
+// typeof 'string' => 'string'
+// 综上，输出结果为'string'
+```
+
+> typeof只要两个及两个以上同时检测，最后结果必然是字符串类型
+
+## JS的常见操作语句：判断、循环
+
+### 判断
+
+> 条件成立做什么？不成立做什么？
+
+#### if/else if/else
+
+> if/else
+
+```javascript
+// 语法
+  if (条件) {
+    // 条件成立执行语句
+    // 条件可以多样性：等于、大于、小于的比较；一个值或者取反等 => 最后都是转换为布尔值（TRUE or FALSE）
+  } else if (条件2) {
+    // 条件成立执行语句
+  }
+  ...
+  else {
+    // 以上条件均不满足执行的语句
+  }
+```
+
+```javascript
+  let a = 10;
+  if (a <= 0) {
+    console.log("哈哈");
+  } else if (a > 0 && a < 10) {
+    // A && B:A和B都成立才为TRUE
+    // A || B:A或B其中一个成立就为TRUE
+    console.log("呵呵");
+  } else if (a == 10) {
+    // a = 10 => 赋值操作，恒成立
+    console.log("嘿嘿");
+  } else {
+    consloe.log("嘻嘻");
+  }
+  //=> 输出 “嘿嘿”
+```
+
+#### 三元运算符
+
+> 简单if/else的特殊处理方式
+
+```javascript
+  // 语法：
+  // 条件?执行语句1(成立):执行语句2(不成立);
+  // 应用场景：简单的if/else语句处理，在工作中尽可能不使用，增加代码可阅读性
+  // 1. 如果处理的事情比较多，用括号括起来，每一件用逗号分隔
+  // 2. 如果不处理事情，可以用null或者undefined占位
+  let a = 10;
+  if (a < 10 ) {
+    console.log('a < 10');
+  } else {
+    console.log('a < 10');
+  }
+  // 上面的代码可以简化为下面的代码：
+  a < 10 ? console.log('a < 10') : console.log('a < 10');
+```
+
+```javascript
+  let a = 10;
+  if (a > 0 && a < 20) {
+    a++; //=> a += 1 a = a + 1 => 自身累加
+    console.log(a);
+  }
+  a > 0 && a < 20 ? (a++, console.log(a)) : null;
+```
+
+```javascript
+// 求下面if/else的三元运算符
+let a = 10;
+if (a > 0) {
+  if (a < 10) {
+    a++;
+  } else {
+    a--;
+  }
+  // 1. a < 10 ? a++ : a--;
+} else {
+  if (a > -10) {
+    a += 2;
+  }
+  // 2. a > -10 ? a += 2 : null;
+}
+// 3. 三元表达式
+a > 0 ? ( a < 10 ? a++ : a--) : (a > -10 ? a += 2 : null);
+
+```
+
+#### switch case
+
+> 一个变量在不同值情况下的不同操作
+
+> 1. 每一个CASE情况后面都最好加上BREAK
+
+> 2. default等价于else，以上都不成立干的事情
+
+> 3. 每一个case用的都是'===' => 绝对等号
+
+```javascript
+//  语法
+switch (变量) {
+  case 成立的值1:
+    // 执行语句
+    break;
+  case 成立的值2:
+    // 执行语句
+    break;
+  ...
+  default:
+   // 都不成立的执行语句
+}
+let a = 10;
+if (a == 1) {
+  console.log(1);
+} else if (a == 5) {
+  console.log(5);
+} else if (a == 10) {
+  console.log(10);
+} else {
+  console.log(null);
+}
+// switch语法
+let a = 10;
+switch (a) {
+  case 1:
+    console.log(1);
+    break;
+  case 5:
+    console.log(5);
+    break;
+  case 10:
+    console.log(10);
+    break;
+  default:
+    console.log(null);
+}
+```
+
+> case后面不加break
+
+```javascript
+  let a = 1;
+  switch (a) {
+    case 1:
+      a++;
+    case 5:
+      a += 2;
+      break;
+    default:
+      a--;
+  }
+  console.log(a); //=> 4
+  // case 1 条件成立，但因为没有break，继续执行了case 5 部分的代码，无论条件是否成立，都执行，直到找到break为止。
+```
+
+> case不会主动将字符串转换为数字,但if/else会
+
+```javascript
+let a = '5';
+  switch (a) {
+      case 1:
+        console.log("嘻嘻");
+        break;
+      case 5:
+        console.log("哈哈");
+        break;
+      default:
+        console.log("呵呵");
+    } //=> "呵呵"
+
+  if (a == 1) {
+    console.log("嘻嘻");
+  } else if (a == 5) {
+    console.log("哈哈");
+  } else {
+    console.log("呵呵");
+  } //=> 哈哈
+```
+
+> __编程开发人员应当具备探索尝试之心，试一试就不会怀疑了__
+
+#### == VS ===
+
+> ==： 相等 =》左右两边数据类型不同，默认先转换为相同的，再开始比较
+
+> ===： 绝对相等 =》如果类型不一样，肯定不相等
+
+```javascript
+  console.log('5' == 5); //=> true
+  console.log('5' === 5); //=> false
+```
+
+> 业务逻辑中，建议使用绝对相等，保证业务的严谨性
+
+### 循环
