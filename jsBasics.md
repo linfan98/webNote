@@ -808,3 +808,103 @@ let a = '5';
 > 业务逻辑中，建议使用绝对相等，保证业务的严谨性
 
 ### 循环
+
+> 重复做某件事情
+
+```javascript
+  // 1. for循环
+  // 2. for in循环
+  // 3. for of循环（ES6新增）
+  // 4.while
+  // 5.do while
+```
+
+#### for循环
+
+```JavaScript
+// 1.创建循环初始值
+// 2.设置（验证）循环执行的条件
+// 3.条件成立自行循环体中的内容
+// 4.当前循环结束，执行步长累加操作
+```
+
+```JavaScript
+for (var i = 0;i < 5;i++) {
+  concole.log(i); //=> 1,2,3,4 
+}
+console.log(i); //=> 5
+
+for (var n = 10; n > 4;i -= 2) {
+  if (n < 7) {
+    n++;
+  } else {
+    n--;
+  }
+}
+console.log(n); //=> 4
+
+```
+
+#### 循环中的关键词
+
+```javascript
+  // continue:结束当前这轮循环 => continue后面的代码不再执行，继续执行下一步循环
+  // break:强制结束整个循环 => break后面的代码不再执行，跳出循环体，整个循环直接结束
+```
+```javascript
+  for (i = 0;i < 10;i++) {
+    if (i >= 2) {
+      i += 2;
+      continue;
+    }
+    if(i >= 6) {
+      i--;
+      break;
+    }
+    i++;
+    console.log(i); 
+  }
+  console.log(i); 
+  // 1,11,共输出2次
+```
+
+
+
+
+
+## JS操作DOM
+
+> 传统基于DOM实现业务需求
+
+```javascript
+// 1. 想操作谁就绑定谁
+// 2. 给某元素绑定响应事件
+// 3. 在事件触发的时候修改元素的样式
+
+// 语法：
+  // document.getELementById() => 在整个文档中，通过ID获取当前元素对象
+  // 元素对象.onxxx=function(){} => 事件绑定，xxx时间类型（click、mouseover、mousedown、keydowm...）
+    // 操作的是元素的行内样式
+  // 元素.style.xxx => 获取某一个元素的样式
+    // 如果我们没有在行内样式上面写样式，在JS中基于元素.style.xxx的方式是无法获取到样式的。
+```
+
+```javascript
+        let box = document.getElementById('box');
+        let detail = document.getElementById('detail');
+
+        box.onclick=function(){
+            // 获取原有的显示的样式
+            console.log(detail.style.display);
+            if (detail.style.display == 'none'){
+                detail.style.display = 'block';
+                box.style.borderBottomColor = '#fff';
+            }else if (detail.style.display == 'block') {
+                detail.style.display = 'none';
+                box.style.borderBottomColor = 'lightcoral';
+            }
+            
+        };
+```
+
+> 如果是点击实现显示，不需要JS也可以实现，可以基于:target实现手风琴效果
