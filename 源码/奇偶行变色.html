@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+
+        ul{
+            list-style-type: none;
+        }
+
+        #newsBox{
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 3px solid #ff00ff;
+        }
+
+        #newsBox li{
+            line-height: 50px;
+            border-bottom: 1px dashed #000;
+        }
+
+        #newsBox li:nth-last-child(1){
+            border-bottom: none;
+        }
+
+        /* 用CSS实现隔行变色 */
+        /* 在工作中，隔行变色一般用css实现而不用js实现 */
+        /* #newsBox li:nth-child(even){
+            background-color: #ddd;
+        }
+
+        #newsBox li:hover{
+            background-color: #f0f;
+        } */
+
+    </style>
+</head>
+<body>
+    <!-- ul>li*5{我是第$个LI} -->
+    <ul id="newsBox">
+        <li>我是第1个LI</li>
+        <li>我是第2个LI</li>
+        <li>我是第3个LI</li>
+        <li>我是第4个LI</li>
+        <li>我是第5个LI</li>
+    </ul>
+    <script>
+        // [context].getElementsByTagName([tagname]); => 在指定的context范围之内，通过标签名获取一组元素（元素集合HTMLCollection） => 集合和数组很相似，也是以数字索引作为属性名，有length属性存储长度，但是不是数组，是“类数组”对象。
+        let newsBox = document.getElementById('newsBox');
+        let newList = newsBox.getElementsByTagName('li');
+        // console.log(newList);
+        for (let i=0;i<newList.length;i++) {
+            let curList = newList[i];
+            if(i % 2 == 0){
+                curList.style.backgroundColor = '#ddd';
+                curList.style.color = '#fff';
+            }else {
+                curList.style.backgroundColor = '#fff';
+                curList.style.color = '#000';
+            }
+        }
+    </script>
+</body>
+</html>

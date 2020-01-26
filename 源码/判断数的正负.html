@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" name="numInp" id="numInp">
+    <button id="submit">点击计算</button>
+    <script>
+        var numInp=document.getElementById('numInp');
+        var submit=document.getElementById('submit');
+        // console.log(numInp);
+        // console.log(submit);
+        submit.onclick = function(){
+            var n = numInp.value;
+            n=Number(n);
+            // console.log(n);
+            if(!isNaN(n)){
+                // 是有效数字
+                if( n > 0) { console.log('正数'); }
+                else if(n < 0) { console.log('负数');}
+                else { console.log('零');}
+            }else {
+                // 不是有效数字
+                console.log('不是有效数字！');
+            }
+            numInp.value = '';
+        };
+    </script>
+</body>
+</html>

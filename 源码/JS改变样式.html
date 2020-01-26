@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        #box{
+            box-sizing: border-box;
+            height: 200px;
+            width: 200px;
+            border: 3px solid #000;
+        }
+
+        .aa{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        let box = document.getElementById('box');
+        // 通过方法获取的元素是对象数据类型的值
+        // console.log(typeof box); //=> "object"
+        // .dir => 输出一个对象的详细信息
+        /*
+         * id: 能操作元素的ID值
+         * className: 操作元素的CLASS样式类的值
+         * innerHTML: 操作元素的内容（可以识别标签）
+         * innerText: 和innerHTML的区别是不能识别标签
+         * style: 操作元素的行内样式
+                  属性值是一个新的对象 => CSSStyleDeclaration
+                  box.style.dispaly='none' => 修改的是堆内存中的值（只要堆内存中的值被修改，浏览器就会基于DOM映射机制把页面中的元素进行重新渲染）
+         * tagName: 获取元素的标签名（一般大写）
+         * ...
+         */
+        // console.dir(box); //=> 输出一个对象
+        // var aa = box.style;
+        // aa.backgroundColor = 'blue';  //=> 修改堆中的信息，有效果
+        // var bb = box.style.backgroundColor;
+        // bb = 'red'; //=> 没效果，修改的不是堆中的信息
+    </script>
+</body>
+</html>

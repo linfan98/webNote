@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+
+        ul{
+            list-style-type: none;
+        }
+
+        #newsBox{
+            width: 300px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 3px solid #ff00ff;
+            border-radius: 8px;
+        }
+
+        #newsBox li{
+            line-height: 50px;
+            border-radius: 5px;    
+        }
+
+        #newsBox li:nth-last-child(1){
+            border-bottom: none;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- ul>li*5{我是第$个LI} -->
+    <ul id="newsBox">
+        <li>我是第1个LI</li>
+        <li>我是第2个LI</li>
+        <li>我是第3个LI</li>
+        <li>我是第4个LI</li>
+        <li>我是第5个LI</li>
+    </ul>
+    <script>
+        let newsBox = document.getElementById('newsBox');
+        let newList = newsBox.getElementsByTagName('li');
+        for (let i=0;i<newList.length;i++) {
+            let curList = newList[i];
+            let sty = curList.style;
+            sty.background = (i % 2 == 0)?'#ddd':'#fff';
+            // 循环的时候给每个LI都绑定mouseover/mouseout事件
+            curList.onmousemove = function () {
+                this.style.background = '#00f';
+            };
+
+            curList.onmouseout = function () {
+                // this.style.background = '#fff';
+                sty.background = (i % 2 == 0)?'#ddd':'#fff';
+            };
+        }
+    </script>
+</body>
+</html>

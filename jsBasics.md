@@ -871,7 +871,6 @@ console.log(n); //=> 4
 
 
 
-
 ## JS操作DOM
 
 > 传统基于DOM实现业务需求
