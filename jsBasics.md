@@ -907,3 +907,174 @@ console.log(n); //=> 4
 ```
 
 > 如果是点击实现显示，不需要JS也可以实现，可以基于:target实现手风琴效果
+
+
+
+## 函数 function
+
+### 函数基础
+
+> 函数就是一个方法或者功能体，函数就是把实现某个功能的代码放到一起进行封装，以后想要操作这个功能，只需要把函数调用即可 => “封装”；减少页面中的冗余代码，提高代码重复使用效率（低耦合高内聚）
+
+ **洗衣机就是一个函数**
+
+>  生产洗衣机就是封装一个函数
+>
+> 把实现某些功能的代码封装进来
+
+>  生产的时候，不知道用户洗衣服的时候放什么水、衣服、洗衣液，我们需要提供出入口
+>
+> 提供的入口在函数中叫做形参，执行的时候放的具体东西函数中叫做实参
+
+> 洗完衣服需要能拿出来，洗衣机提供一个出口
+>
+> 在函数中叫做返回值：把函数处理后的结果能够返回给外面用
+
+> 创建函数
+
+- 形参
+- 返回值
+
+> 执行函数
+
+- 实参
+
+> arguments
+
+> 函数底层运行机制
+
+> ...
+
+#### 创建函数
+
+```
+//=>ES5老方式
+function [函数名]([形参变量1],...){
+	// 函数体：基于JS完成需要实现的功能
+	return [处理后的结果];
+}
+
+[函数名]([实参1],...);
+```
+
+```javascript
+// 求两个数的和，算完和后乘以10，然后再除以2...
+let n = 10 + 10;
+n = n*10;
+n = n/2;
+
+let n = 20 + 20;
+n = n*10;
+n = n/2;
+...
+
+// sum => 函数名，代表这个函数
+function sum(x,y) {
+    // x,y是形参，是变量，用来储存函数执行时传递的实参
+    let result = x + y;
+    result *= 10;
+    result /= 2;
+}
+console.log(sum); //=> 当前函数本身
+sum(10,20);//=> 调用函数，让函数执行,代表的是函数执行后返回的结果
+sum(25,27);
+// 10,20/25,27 => 都是传递给形参变量的值（实参）
+
+```
+
+```javascript
+// 形参细节
+// 创建函数的时候，我们设置了形参变量，但如果执行的时候并没有给传递对应的实参值，那么形参变量默认值: undefined
+function sum(x,y) {
+    let result = x + y;
+    result *= 10;
+    result /= 2;
+    console.log(result);
+}
+
+sum(); // 形参 => undefined undefined 结果为 => NaN
+sum(10);// 形参 => 10 undefined 结果为 => NaN
+sum(10,20);// 形参 => 10,20 结果为 => 150
+sum(10,20,30);// 形参 => 10,20 结果为 => 150
+
+```
+
+```javascript
+//形参默认值处理
+function sum(x,y) {
+    // 形参默认值的处理：没有传递形参是给予默认值
+    if (n === undefined) {n=0;}
+    if (typeof m === 'undefined') {m=0;}
+    
+    let result = x + y;
+    result *= 10;
+    result /= 2;
+    console.log(result);
+}
+
+sum(); // 形参 => 0 0 结果为 => 0
+sum(10);// 形参 => 10 0 结果为 => 50
+sum(10,20);// 形参 => 10,20 结果为 => 150
+sum(10,20,30);// 形参 => 10,20 结果为 => 150
+```
+
+```javascript
+//函数返回值
+// 函数执行时，函数体内部创建的变量，我们是不能获取、操作的（闭包作用域）；如果需要获取内部的信息，我们需要基于RETURN返回值机制把信息返回才可以
+function sum(x,y) {
+    let result = x + y;
+    // console.log(result);
+    // return的一定是值：此处是把result变量存储的值返回到函数外面
+    return result;
+}
+
+sum(10,20); //=> 结果为30
+console.log(result); //=> 报错：result is not defined，未定义错误
+let aa = sum(10,20);
+console.log(aa); //=> 30
+
+// 没有写return，函数默认返回值是undefined
+function sum(x,y) {
+    let result = x + y;    
+}
+let aa = sum(10,20);
+console.log(aa); //=> undefined
+
+```
+
+> console.log();是浏览器默认的内置函数
+
+```javascript
+function sum(x,y) {
+    if (n === undefined || m === undefined) {
+        // 函数体中,遇到return就不再执行了
+        return;
+    }
+    let result = x + y;
+    // console.log(result);
+    // return的一定是值：此处是把result变量存储的值返回到函数外面
+    return result;
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

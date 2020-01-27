@@ -9,3 +9,4 @@ console.log(ary[3]);
 console.log(ary.length);
 console.log(ary[ary.length-1]);
 console.log(ary[ary.length]);
+
